@@ -3,10 +3,7 @@ package com.renanpetronilho.rest;
 import com.renanpetronilho.hazelcast.Cache;
 import com.renanpetronilho.model.Pessoa;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -43,6 +40,12 @@ public class PessoaController {
 				.fromCurrentRequest().path("/{cpf}")
 				.buildAndExpand(pessoa.getCpf()).toUri());
 		return new ResponseEntity<>(pessoa, httpHeaders, HttpStatus.CREATED);
+	}
+
+	@RequestMapping(path = "/{cpf}", method = RequestMethod.DELETE)
+	public Object delete(@PathVariable String cpf){
+		cache.delete(cpf);
+		return new ResponseEntity<>(HttpEntity.EMPTY,HttpStatus.NO_CONTENT);
 	}
 
 }

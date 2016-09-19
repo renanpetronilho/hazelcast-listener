@@ -29,24 +29,24 @@ public class Cache {
 	}
 
 	public void put(Pessoa pessoa) {
-		Map<Object, Object> mapCustomers = instance.getMap(MAP_PESSOA);
-		mapCustomers.put(pessoa.getCpf(), pessoa);
+		Map<Object, Object> mapPessoas = instance.getMap(MAP_PESSOA);
+		mapPessoas.put(pessoa.getCpf(), pessoa);
 	}
 
 	public void delete(String key) {
-		Map<Object, Object> mapCustomers = instance.getMap(MAP_PESSOA);
-		mapCustomers.remove(key);
+		Map<Object, Object> mapPessoas = instance.getMap(MAP_PESSOA);
+		mapPessoas.remove(key);
 	}
 
 	public Pessoa get(String key) {
-		Map<Object, Object> mapCustomers = instance.getMap(MAP_PESSOA);
-		return (Pessoa) mapCustomers.get(key);
+		Map<Object, Object> mapPessoas = instance.getMap(MAP_PESSOA);
+		return (Pessoa) mapPessoas.get(key);
 	}
 
 	public List<Pessoa> getAll() {
-		Map<Integer, String> mapCustomers = instance.getMap(MAP_PESSOA);
+		Map<Integer, String> mapPessoas = instance.getMap(MAP_PESSOA);
 		List<Pessoa> pessoas = new ArrayList<Pessoa>();
-		for (Object obj : mapCustomers.values())
+		for (Object obj : mapPessoas.values())
 			pessoas.add((Pessoa) obj);
 		return pessoas;
 	}
